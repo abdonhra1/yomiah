@@ -20,6 +20,7 @@ import { environment } from '../app_rsrs/env';
 import { IonicStorageModule } from '@ionic/storage';
 import { OffersService } from "../services/offers.service";
 import { OfferApplicantsService } from "../services/offer-applicants.service";
+import { InternshipsService } from "../services/internships.service";
 import { TransHelpService } from "../services/transHelp.service";
 import { AppConfigService } from "../services/appconfig.service";
 import { Network } from '@ionic-native/network';
@@ -71,6 +72,7 @@ export function createTranslateLoader(http: Http) {
     OfferApplicantsService,
     AppConfigService,
     TransHelpService,
+    InternshipsService,
     Network,
     Geolocation,
     SplashScreen,

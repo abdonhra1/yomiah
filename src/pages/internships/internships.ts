@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { InternshipsService } from "../../services/Internships.service";
+import { InternshipsService } from "../../services/internships.service";
 
 /**
  * Generated class for the Internships page.
