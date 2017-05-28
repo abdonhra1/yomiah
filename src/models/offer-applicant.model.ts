@@ -4,6 +4,8 @@ export class OfferApplicantModel {
 
     aplct_id: string;
     status: string;
+    date_created: any;
+    notes: string;
     trans: any[];
 
     constructor(){};
@@ -21,6 +23,7 @@ export class OfferApplicantModel {
     static fromJson({$key,
         aplct_id,
         status,
+        notes,
         trans
     }):OfferApplicantModel {
         let offerApplicant= new OfferApplicantModel();
@@ -30,6 +33,7 @@ export class OfferApplicantModel {
             
         offerApplicant.aplct_id= aplct_id;
         offerApplicant.status = status || null;
+        offerApplicant.notes= notes || null;
         offerApplicant.trans = trans || [] ;
         return offerApplicant;
     }

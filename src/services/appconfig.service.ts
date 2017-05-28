@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Network } from '@ionic-native/network';
+import firebase from 'firebase';
 
 @Injectable()
 export class AppConfigService {
@@ -9,6 +10,10 @@ export class AppConfigService {
 
     constructor(private network: Network){
         this.checkOnlineStatus();
+    }
+
+    static firetime(): any{
+        return firebase.database.ServerValue.TIMESTAMP;
     }
 
     checkOnlineStatus():boolean {

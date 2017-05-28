@@ -19,6 +19,7 @@ export class OfferModel {
     req_after:string;
     location:any;
     loct_text:string;
+    date_updated:any;
     starts_at;// TODO date !!
 
     constructor(){};
@@ -57,7 +58,8 @@ export class OfferModel {
         archived,
         location,
         loct_text,
-        hour_rate
+        hour_rate,
+        date_updated
     }):OfferModel {
             let offer= new OfferModel();
 
@@ -82,6 +84,7 @@ export class OfferModel {
             offer.archived= archived || null;
             offer.req_after=req_after || null;
             offer.job_details= job_details || null;
+            offer.date_updated= date_updated || null;
             return offer;
     }
 }

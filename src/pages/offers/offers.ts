@@ -36,14 +36,12 @@ export class Offers {
   }
 
   ngOnInit(){
-    this.userInfoServ.getUser().then(userInfo=>this.userInfo=userInfo);
-
     this.userInfoServ.getUser().then((userInfo:UserInfoModel)=>{
+        this.userInfo=userInfo ;
         this.offersServ.getUserOffers().then(data=>{
         this.offers=data;
       });
     });
-
   }
 
   add_client_offer() {

@@ -36,7 +36,7 @@ export class OffersService {
         
         // Insert to db
         // TODO: offline !!
-        
+
         return new Promise((resolve,reject) => {
             
             if(editMode){
@@ -49,6 +49,7 @@ export class OffersService {
                 let offer:OfferModel=OfferModel.fromJson(data);
                 console.log(offer);
                 */
+                
                 this.db.list(this.DB_REF).push(offer).then(odata=>{
                     resolve(odata.key);
                 });

@@ -19,6 +19,7 @@ import { UserInfoService } from "../services/user-info.service";
 import { environment } from '../app_rsrs/env';
 import { IonicStorageModule } from '@ionic/storage';
 import { OffersService } from "../services/offers.service";
+import { OfferApplicantsService } from "../services/offer-applicants.service";
 import { TransHelpService } from "../services/transHelp.service";
 import { AppConfigService } from "../services/appconfig.service";
 import { Network } from '@ionic-native/network';
@@ -67,6 +68,7 @@ export function createTranslateLoader(http: Http) {
     AuthService,
     UserInfoService,
     OffersService,
+    OfferApplicantsService,
     AppConfigService,
     TransHelpService,
     Network,

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { InternshipsService } from "../../services/Internships.service";
 
 /**
  * Generated class for the Internships page.
@@ -14,7 +15,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class Internships {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+  private internServ: InternshipsService) {
   }
 
   ionViewDidLoad() {

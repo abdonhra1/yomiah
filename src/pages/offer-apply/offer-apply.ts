@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { OfferModel } from "../../models/offer.model";
 import { UserInfoService } from "../../services/user-info.service";
+import { OfferApplicantsService } from "../../services/offer-applicants.service";
+import { OfferApplicantModel } from "../../models/offer-applicant.model";
 
 
 @IonicPage()
@@ -19,7 +21,8 @@ export class OfferApply {
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    private userInfoServ:UserInfoService
+    private userInfoServ:UserInfoService,
+    private offAppServ: OfferApplicantsService
   ) { }
 
   ngOnInit() {
@@ -32,7 +35,12 @@ export class OfferApply {
 
   aplc_confirm(){
     console.log(this.aplcTxt);
+    let offerApp = new OfferApplicantModel();
+    offerApp.status = 'application';
+    offerApp.notes = this.aplcTxt;
+    this.offAppServ.saveOfferApplicant(offerApp);
   }
+
   goBack() {
     this.navCtrl.setRoot('Offers');
   }

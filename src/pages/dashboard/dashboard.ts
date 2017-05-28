@@ -61,7 +61,8 @@ import { TransHelpService } from "../../services/transHelp.service";
 export class Dashboard {
 
   offers:FirebaseListObservable<OfferModel[]>;
-
+  userInfo: UserInfoModel=new UserInfoModel();
+  
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private userInfoServ: UserInfoService,
@@ -71,6 +72,7 @@ export class Dashboard {
 
   ngOnInit(){
     this.userInfoServ.getUser().then((userInfo:UserInfoModel)=>{
+      this.userInfo=userInfo;
         this.offersServ.getUserOffers(userInfo._uid).then(data=>{
         this.offers=data;
       });
@@ -89,17 +91,15 @@ export class Dashboard {
 
   archive(offer){
     this.offers.update(offer.$key,{archived:true});
-    // TOAST
     this.toastCtrl.create({message:this.trans.get('MESSAGE.ARCHIVE_OFFER'), duration:1000}).present();
   }
 
   swipeStatus(ev, offer){
-    /*
-    if( (ev.direction == 4 && ! offer.swiped) ||
+
+    /*if( (ev.direction == 4 && ! offer.swiped) ||
         (ev.direction == 2 && offer.swiped) ){
       offer.swiped = !offer.swiped;
-    }
-    */
+    }*/
     offer.swiped = !offer.swiped;
   }
 

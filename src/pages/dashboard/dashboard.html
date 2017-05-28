@@ -13,7 +13,7 @@
 
 
 <ion-content class="elbg">
-
+<h3 text-center>{{ 'MY_OFFERS' | translate}}</h3>
 <ion-grid>
   <ion-row *ngFor="let offer of offers | async" (swipe)="swipeStatus($event,offer)">
 
@@ -55,6 +55,9 @@
 
               <hr/>
                 <ion-row no-padding>
+                    <ion-col >
+
+                    </ion-col>
                     <ion-col>
                       <button ion-button small color="third" icon-left (click)="editOffer(offer)">
                         <ion-icon name='create'></ion-icon>
@@ -62,9 +65,7 @@
                         {{ 'EDIT' | translate}} {{ 'TDATA' | translate}}
                       </button>
                     </ion-col>
-                    <ion-col text-center>
 
-                    </ion-col>
                 </ion-row>
 
         </ion-card-content>
@@ -102,4 +103,13 @@
 
   </ion-row>
 </ion-grid>
+
+
+<br/><br/><br/><br/><br/>
+ <ion-fab right bottom *ngIf="userInfo.user_mode=='client'">
+   <button ion-fab icon-only navPush="OfferEdit" color="third">
+     <ion-icon name="add"></ion-icon>
+   </button>
+ </ion-fab>
+
 </ion-content>
