@@ -24,13 +24,126 @@ $font-path: "../assets/fonts";
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
-  secondary:  #32db64,
+  primary:    #4285F4,
+  secondary:  #689DF6,
+  third:      #434446,
   danger:     #f53d3d,
+  green:    green,
   light:      #f4f4f4,
   dark:       #222
 );
 
+
+body {
+  direction: rtl;
+}
+
+ion-navbar{
+  ion-title{
+    margin-bottom: 10px;
+    margin-top: 0px;
+  }
+}
+
+.border-red {
+  border-left: 15px solid red;
+}
+
+.border-green {
+  border-left: 15px solid green;
+}
+
+.border-yellow {
+  border-left: 15px solid yellow;
+}
+
+.no-padding {
+    padding: 0px !important;
+}
+
+ion-slides{
+  direction:ltr;
+}
+
+ion-fab[bottom]{
+    bottom: 60px;
+    margin: 10px;
+}
+
+.indanger {
+  color:color($colors,danger);
+}
+
+h4,h5 {
+  color: color($colors,primary) !important;
+}
+
+.damargin {
+    margin: 5px;
+}
+
+.list-ios>.item-block:first-child {
+    border-top: none;
+}
+
+.centerit {
+  justify-content: center;
+  text-align: center;
+}
+
+.leftit{
+  text-align: left;
+}
+
+.elbg{
+  background-color: #efeef7 !important;
+}
+
+.card-spacer{
+  height: 16px;
+}
+.calc-label{
+    display: flex!important;
+    align-items: center!important;
+    color: #999;
+    font-size: 1.2em;
+    &.end{
+      justify-content: flex-end;
+    }
+}
+
+.inlabel{
+  color:#999;
+  font-weight: bold;
+}
+
+.headrow{
+    margin: -5px;
+    justify-content: flex-end;
+}
+
+.fulldiv{
+    width: 100%;
+    height: 100%;
+    padding: 40px;
+    left: 25px;
+    position: relative;
+}
+
+sebm-google-map {
+    height: 250px;
+    width: 100%;
+}
+
+ion-card{
+  &.full{
+    width: 100%;
+    margin: 0;
+    margin-top: 8px;
+    border-top: 1px solid rgba(0, 0, 0, 0.14);
+    border-radius: 0; 
+  }
+}
 
 // App iOS Variables
 // --------------------------------------------------

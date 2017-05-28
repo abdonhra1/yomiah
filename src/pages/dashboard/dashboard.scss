@@ -1,0 +1,30 @@
+page-dashboard {
+    @-webkit-keyframes slideIn {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 0;
+    }
+    }
+
+    @-webkit-keyframes slideInSmooth {
+    0% {
+        -webkit-transform: translate3d(100%,0,0);
+    }
+    100% {
+        -webkit-transform: translate3d(0,0,0);
+    }
+    }
+
+
+    .slide-in{
+    -webkit-animation: slideInSmooth ease-in 1; 
+    animation: slideInSmooth ease-in 1;
+    -webkit-animation-fill-mode: backwards;
+    animation-fill-mode: backwards;
+    -webkit-animation-duration: 500ms;
+    animation-duration: 500ms;
+    }
+
+}

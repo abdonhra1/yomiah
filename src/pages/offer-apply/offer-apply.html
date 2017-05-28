@@ -1,0 +1,99 @@
+
+<ion-header>
+
+  <ion-navbar color="primary" hideBackButton="true">
+
+    <ion-buttons>
+      <button ion-button icon-only (click)="goBack()">
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title class="centerit">{{ 'APPLY_FOR_JOB' | translate}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-row ion-item>
+      <h4>{{offer?.job_title}}</h4>
+    </ion-row>
+
+          <ion-row>
+            <ion-col >
+              <span class="inlabel">{{ 'FROM_TIME' | translate}}</span> {{offer?.from_time_label}} 
+            </ion-col>
+            <ion-col>
+              <span class="inlabel">{{ 'TO_TIME' | translate}}</span> {{offer?.to_time_label}} 
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col >
+              <span class="inlabel">{{ 'FOR_PERIOD' | translate}}</span> {{offer?.period_hours}} {{ 'HOURS_LABEL' | translate}}
+            </ion-col>
+            <ion-col>
+              <span class="inlabel">{{ 'PAYOUT_AMOUNT' | translate}}</span> {{offer?.payout}} {{ 'L_E' | translate}}
+            </ion-col>
+          </ion-row>
+
+          <ion-row *ngIf="offer?.period_days>1" >
+            <ion-col >
+              <span class="inlabel">{{ 'FOR_PERIOD_DAYS' | translate}}</span> {{offer?.period_days}} {{ 'DAYS_LABEL' | translate}}
+            </ion-col>
+            <ion-col>
+              <span class="inlabel">{{ 'TOTAL_PAYMENT' | translate}}</span> {{offer?.payout*offer?.period_days}} {{ 'L_E' | translate}}
+            </ion-col>
+          </ion-row>
+
+          <ion-row *ngIf="addedBy" >
+            <ion-col >
+              <span class="inlabel">{{ 'ADDED_BY' | translate}}</span> {{addedBy.first_name}}
+            </ion-col>
+            <ion-col>
+            </ion-col>
+          </ion-row>
+
+          <hr/>
+
+          <ion-row *ngIf="!apply">
+
+              <button ion-button block color="third" (click)="apply=true">
+                <ion-icon name="briefcase"></ion-icon>
+                <span class="damargin"></span>
+                {{ 'APPLY_FOR_JOB' | translate}}
+              </button>
+          </ion-row>
+
+            <ion-row no-padding *ngIf="apply">
+
+              <ion-item >
+                <ion-label floating>{{ 'JOB_DETAILS' | translate}}</ion-label>
+                <ion-textarea rows=3  
+                [(ngModel)]="aplcTxt"
+                (blur)='donothing'
+                (focus)='donothing'>
+                </ion-textarea>
+              </ion-item>
+
+              <ion-row>
+                <ion-col>
+                      <button ion-button color="danger" icon-left (click)="apply=false">
+                        <ion-icon name='close'></ion-icon>
+                        <span class="damargin"></span>
+                        {{ 'CANCEL_TEXT' | translate}}
+                      </button>
+                </ion-col>
+
+                <ion-col>
+                      <button ion-button color="third" icon-left (click)="apply=false;aplc_confirm()">
+                        <ion-icon name='checkmark'></ion-icon>
+                        <span class="damargin"></span>
+                        {{ 'CONFIRM_TEXT' | translate}}
+                      </button>
+                </ion-col>
+              </ion-row>
+
+            </ion-row>
+</ion-content>

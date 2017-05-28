@@ -1,0 +1,76 @@
+<ion-header>
+
+  <ion-navbar color="primary" hideBackButton="true" >
+
+    <ion-buttons>
+      <button ion-button icon-only (click)="goBack()">
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title class="centerit" >{{ 'SIGN_UP' | translate}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<form #f="ngForm" (ngSubmit)="onSignUp(f)">
+
+    <ion-grid>
+      <ion-row>
+        <ion-col ion-item col-6>
+            <ion-label floating>{{ 'FIRST_NAME' | translate}}</ion-label>
+            <ion-input type="text" 
+            name="first_name" 
+            ngModel
+            required></ion-input>
+        </ion-col>
+
+        <ion-col ion-item col-6>
+          <ion-label floating>{{ 'LAST_NAME' | translate}}</ion-label>
+          <ion-input type="text" 
+          name="last_name" 
+          ngModel
+          required></ion-input>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
+    <ion-item >
+      <ion-label floating>{{ 'PHONE_NUM' | translate}}</ion-label>
+      <ion-input type="number" 
+      name="phone_num" 
+      ngModel
+      required></ion-input>
+
+    </ion-item>
+    
+    <ion-item >
+      <ion-label floating>{{ 'PASSWORD' | translate}}</ion-label>
+      <ion-input type="text" 
+      name="password"
+      ngModel
+      required></ion-input>
+    </ion-item>
+
+  <h5>{{ 'USER_MODE_LABEL' | translate}}</h5>
+
+      <ion-list radio-group name="user_mode" [(ngModel)]="userMode" required>
+        <ion-item>
+          <ion-label>{{ 'WORKER_LABEL' | translate}}</ion-label>
+          <ion-radio value="worker" ></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{ 'CLIENT_LABEL' | translate}}</ion-label>
+          <ion-radio value="client"></ion-radio>
+        </ion-item>
+      </ion-list>
+
+  <button color="third"
+  ion-button type="submit" 
+  block
+  [disabled]="!f.valid"> {{ 'SIGN_UP' | translate}}</button>
+</form>
+</ion-content>

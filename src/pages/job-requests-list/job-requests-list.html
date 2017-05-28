@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar color="primary" hideBackButton="true">
+
+    <ion-buttons>
+      <button ion-button icon-only menuToggle >
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title class="centerit">{{ 'JOB_REQUESTS' | translate }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+ <ion-fab right bottom *ngIf="userInfo.user_mode=='worker'">
+   <button ion-fab icon-only navPush="JrEdit" color="third">
+     <ion-icon name="add"></ion-icon>
+   </button>
+ </ion-fab>
+
+</ion-content>

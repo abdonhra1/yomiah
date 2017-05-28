@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-navbar color="primary" >
+
+    <ion-title>{{ 'PAYMENT_CALC' | translate}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+      <ion-row>
+        <ion-col col-4 class="calc-label end">
+          {{ 'FOR_PERIOD' | translate}} :
+        </ion-col>
+        <ion-col >
+          {{ periodHours }} {{ 'HOURS_LABEL' | translate}} 
+          <span *ngIf="periodDays > 1">
+          {{ 'DAILY_LABEL' | translate}} , 
+          {{ 'FOR_PERIOD_DAYS' | translate}} {{ periodDays }} {{ 'DAYS_LABEL' | translate}}
+          </span>
+        </ion-col>
+      </ion-row>
+      
+      <ion-row>
+        <ion-col col-4 class="calc-label end">
+          {{ 'HOUR_PRICE' | translate}} :
+        </ion-col>
+        <ion-col >
+          <plusminus [(input)]="hourRate" [(min)]="minHourRate" (inputChange)="changeSugPayment()"></plusminus>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-4 class="calc-label end">
+          {{ 'SUGGESTED_PAYMENT_PERPERSON' | translate}} :
+        </ion-col>
+        <ion-col >
+          <plusminus [(input)]="sugPayment" [(min)]="minPayment" ></plusminus>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="indanger">
+          * {{ 'MIN_PAYMENT' | translate}} : {{minPayment}} 
+          <span *ngIf="periodDays > 1">
+          {{ 'FOR_TOTAL_PERIOD_OF' | translate}} {{ periodDays }} {{ 'DAYS_LABEL' | translate}}
+          </span>
+      </ion-row>
+
+      <hr/>
+      <h5>{{ 'TOTAL_PAYMENT' | translate}} {{sugPayment*workersCount}} 
+        <span *ngIf="workersCount > 1"> 
+          {{ 'FOR' | translate}}{{ 'WORKERS_COUNT' | translate}} {{workersCount}} {{ 'L_E' | translate}},
+           {{ 'FOR_RATE' | translate}}  {{sugPayment}} {{ 'L_E' | translate}} {{ 'PER_PERSON' | translate}} 
+        </span>
+      </h5>
+      
+      <div class="leftit">
+        <button ion-button  color="third" (click)="onClose()"> {{ 'OK_TEXT' | translate}} </button>
+      </div>
+
+</ion-content>

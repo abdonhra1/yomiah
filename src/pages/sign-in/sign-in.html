@@ -1,0 +1,65 @@
+
+<ion-header>
+
+  <ion-navbar color="primary" hideBackButton="true">
+
+    <ion-buttons>
+      <button ion-button icon-only (click)="goBack()">
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+    </ion-buttons>
+    
+    <ion-title class="centerit" >{{ 'SIGN_IN' | translate}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<form #f="ngForm" (ngSubmit)="onSignIn(f)">
+  <ion-list >
+
+    <ion-item >
+      <ion-label floating>{{ 'PHONE_NUM' | translate}}</ion-label>
+      <ion-input type="number" 
+      name="phone_num" 
+      ngModel
+      required></ion-input>
+
+    </ion-item>
+    
+    <ion-item >
+      <ion-label floating>{{ 'PASSWORD' | translate}}</ion-label>
+      <ion-input type="password" 
+      name="password"
+      ngModel
+      required></ion-input>
+
+    </ion-item>
+
+  </ion-list>
+  <button color="third"
+  ion-button type="submit" 
+  block
+  [disabled]="!f.valid"> {{ 'SIGN_IN' | translate}}</button>
+</form>
+
+<ion-grid>
+  <ion-row>
+    <ion-col col-6>
+      <button color="third"
+      ion-button 
+      outline
+      block> {{ 'FORGET_PASSWORD' | translate}}</button>
+    </ion-col>
+    <ion-col col-6>
+      <button color="third"
+      ion-button 
+      outline
+      navPush="SignUp"
+      block> {{ 'NEW_USER' | translate}}</button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+</ion-content>

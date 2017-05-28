@@ -1,0 +1,105 @@
+<ion-header>
+  <ion-navbar color="primary" hideBackButton="true">
+
+    <ion-buttons>
+      <button ion-button icon-only menuToggle >
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title class="centerit">{{ 'HOME' | translate }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="elbg">
+
+<ion-grid>
+  <ion-row *ngFor="let offer of offers | async" (swipe)="swipeStatus($event,offer)">
+
+      <ion-card>
+        <ion-card-header color="primary" class="no-padding">
+
+          <ion-row>
+            <ion-col padding>
+              <span (click)="showOffer(offer)"> {{offer.job_title}} </span>
+            </ion-col>
+            <ion-col col-2 
+            [ngClass]="{'border-red':offer.paused,'border-green':!offer.paused}" 
+            (click)="offer.swiped= !offer.swiped">
+            </ion-col>
+          </ion-row>
+         
+
+        </ion-card-header>
+
+        <ion-card-content *ngIf="!offer.swiped" [@flyOutIn]>
+
+              <ion-row>
+                <ion-col >
+                  <span class="inlabel">{{ 'FOR_PERIOD' | translate}}</span> {{offer.period_hours}} {{ 'HOURS_LABEL' | translate}}
+                </ion-col>
+                <ion-col>
+                  <span class="inlabel">{{ 'PAYOUT_AMOUNT' | translate}}</span> {{offer.payout}} {{ 'L_E' | translate}}
+                </ion-col>
+              </ion-row>
+
+              <ion-row *ngIf="offer.period_days>1">
+                <ion-col >
+                  <span class="inlabel">{{ 'FOR_PERIOD_DAYS' | translate}}</span> {{offer.period_days}} {{ 'DAYS_LABEL' | translate}}
+                </ion-col>
+                <ion-col>
+                  <span class="inlabel">{{ 'TOTAL_PAYMENT' | translate}}</span> {{offer.payout*offer.period_days}} {{ 'L_E' | translate}}
+                </ion-col>
+              </ion-row>
+
+              <hr/>
+                <ion-row no-padding>
+                    <ion-col>
+                      <button ion-button small color="third" icon-left (click)="editOffer(offer)">
+                        <ion-icon name='create'></ion-icon>
+                        <span class="damargin"></span>
+                        {{ 'EDIT' | translate}} {{ 'TDATA' | translate}}
+                      </button>
+                    </ion-col>
+                    <ion-col text-center>
+
+                    </ion-col>
+                </ion-row>
+
+        </ion-card-content>
+
+        <ion-card-content *ngIf="offer.swiped" [@flyInOut]>
+            swipee
+              <hr/>
+                <ion-row no-padding>
+                    <ion-col>
+                      <button ion-button small color="danger" *ngIf="offer.paused" icon-left (click)="archive(offer)">
+                        <ion-icon name='trash'></ion-icon>
+                        <span class="damargin"></span>
+                        {{ 'ARCHIVE' | translate}} {{ 'THE_OFFER' | translate}}
+                      </button>
+                    </ion-col>
+                    <ion-col text-center>
+
+                      <button ion-button small color="danger" *ngIf="!offer.paused" icon-left (click)="changePaused(offer,true)">
+                        <ion-icon name='pause'></ion-icon>
+                        <span class="damargin"></span>
+                        {{ 'PAUSE' | translate}}
+                      </button>
+
+                      <button ion-button small color="green" *ngIf="offer.paused" icon-left (click)="changePaused(offer,false)">
+                        <ion-icon name='play'></ion-icon>
+                        <span class="damargin"></span>
+                        {{ 'UN_PAUSE' | translate}}
+                      </button>
+
+                    </ion-col>
+                </ion-row>
+        </ion-card-content>
+
+      </ion-card>
+
+  </ion-row>
+</ion-grid>
+</ion-content>

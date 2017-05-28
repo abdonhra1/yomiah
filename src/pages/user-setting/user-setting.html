@@ -1,0 +1,24 @@
+<ion-header>
+
+  <ion-navbar color="primary" hideBackButton="true" >
+
+    <ion-buttons>
+      <button ion-button icon-only menuToggle >
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title class="centerit" >{{ 'USER_SETTING' | translate}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <button ion-button block (click)="signOut()" color="third">
+    <ion-icon name="log-out"></ion-icon>
+    <span class="damargin"></span>
+    {{ 'SIGN_OUT' | translate}}
+  </button>
+</ion-content>

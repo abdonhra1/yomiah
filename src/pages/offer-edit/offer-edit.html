@@ -1,0 +1,110 @@
+
+<ion-header>
+
+  <ion-navbar color="primary" hideBackButton="true">
+
+    <ion-buttons>
+      <button ion-button icon-only (click)="goBack()">
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title class="centerit">{{ 'JOB_INIT_DATA' | translate }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+<form #f="ngForm" (ngSubmit)="saveOffer(f)">
+
+<ion-grid>
+    
+    <!--HERE ACTIVITY_TYPE Default from client prof / Not required-->
+
+    <ion-item >
+      <ion-label floating>{{ 'TASK_LABEL' | translate}}</ion-label>
+      <ion-input type="text" name="job_title" 
+      [(ngModel)]="jobTitle"
+      required></ion-input>
+    </ion-item>
+
+    <ion-row>
+      <ion-col ion-item>
+
+          <ion-label floating>{{ 'FROM_TIME' | translate}}</ion-label>
+          
+          <ion-select required name="from_time" [(ngModel)]="fromTimeInit"
+          okText="{{ 'OK_TEXT' | translate}}"
+          cancelText="{{ 'CANCEL_TEXT' | translate}}"  
+          (ngModelChange)="onFromTimeChange($event,f)">
+            <ion-option
+              *ngFor="let option of fromHoursOptions"
+              [value]="option.index">{{ option.label }}</ion-option>
+          </ion-select>
+      </ion-col>
+
+      <ion-col ion-item>
+          <ion-label floating>{{ 'TO_TIME' | translate}}</ion-label>
+          
+          <ion-select 
+          required name="to_time" 
+          [(ngModel)]="toTime"
+          (ngModelChange)="onToTimeChange($event,f)"
+          okText="{{ 'OK_TEXT' | translate}}"
+          cancelText="{{ 'CANCEL_TEXT' | translate}}">
+            <ion-option
+              *ngFor="let option of toHoursOptions"
+              [value]="option.index">{{ option.label }}</ion-option>
+          </ion-select>
+      </ion-col>
+
+    </ion-row>
+
+    <ion-item>
+
+      <ion-label fixed>{{ 'FOR_PERIOD_DAYS' | translate}}</ion-label>
+      
+      <ion-select required name="period_days" 
+      [(ngModel)]="periodDays" 
+      (ngModelChange)="onPeriodDaysChange($event,f)"
+      okText="{{ 'OK_TEXT' | translate}}"
+      cancelText="{{ 'CANCEL_TEXT' | translate}}">
+        <ion-option
+          *ngFor="let option of periodDaysList"
+          [value]="option">{{ 'DAYSLIST.'+option | translate }}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-row>
+      <ion-col class="calc-label">
+        {{ 'WORKERS_COUNT' | translate}}
+      </ion-col>
+      <ion-col >
+        <plusminus [(input)]="workersCount" min=1 [isBorder]="false"></plusminus>
+      </ion-col>
+    </ion-row>
+
+    <ion-row >
+
+      <ion-col class="calc-label">
+        {{ 'PAYOUT_AMOUNT' | translate}}
+      </ion-col>
+      <ion-col >
+        <span [ngClass]="{'indanger':sugPayment < minPayment}">
+        {{sugPayment}} {{ 'L_E' | translate}} 
+        </span>
+        <button ion-button icon-only type="button" [disabled]="periodHours<1" (click)="onCalcModal(f)">
+          <ion-icon name="calculator"></ion-icon>
+        </button>
+      </ion-col>
+
+    </ion-row>
+
+</ion-grid>
+    
+  <button 
+  ion-button type="submit" 
+  block color="third"
+  [disabled]="!f.valid || sugPayment < minPayment"> {{ !editMode ? '':'SAVE' | translate }} {{ editMode ? '':'ADD' | translate }} {{ 'JOB_OFFER' | translate}}</button>
+</form>
+</ion-content>

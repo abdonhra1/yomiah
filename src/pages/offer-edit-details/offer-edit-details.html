@@ -1,0 +1,156 @@
+
+<ion-header>
+  <ion-navbar color="primary" hideBackButton="true">
+
+    <ion-buttons>
+      <button ion-button icon-only (click)="goBack()">
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title class="centerit">{{offer?.job_title}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content class="elbg">
+
+  <ion-card class="full">
+
+    <ion-card-content>
+        <ion-row class="headrow">
+          <ion-buttons>
+
+              <button ion-button clear small icon-only (click)="editOffer(offer)">
+                  <ion-icon name="more"></ion-icon>
+              </button>
+          </ion-buttons>
+        </ion-row>
+
+          <ion-row>
+            <ion-col >
+              <span class="inlabel">{{ 'FROM_TIME' | translate}}</span> {{offer?.from_time_label}} 
+            </ion-col>
+            <ion-col>
+              <span class="inlabel">{{ 'TO_TIME' | translate}}</span> {{offer?.to_time_label}} 
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col >
+              <span class="inlabel">{{ 'FOR_PERIOD' | translate}}</span> {{offer?.period_hours}} {{ 'HOURS_LABEL' | translate}}
+            </ion-col>
+            <ion-col>
+              <span class="inlabel">{{ 'PAYOUT_AMOUNT' | translate}}</span> {{offer?.payout}} {{ 'L_E' | translate}}
+            </ion-col>
+          </ion-row>
+
+          <ion-row *ngIf="offer?.period_days>1">
+            <ion-col >
+              <span class="inlabel">{{ 'FOR_PERIOD_DAYS' | translate}}</span> {{offer?.period_days}} {{ 'DAYS_LABEL' | translate}}
+            </ion-col>
+            <ion-col>
+              <span class="inlabel">{{ 'TOTAL_PAYMENT' | translate}}</span> {{offer?.payout*offer?.period_days}} {{ 'L_E' | translate}}
+            </ion-col>
+          </ion-row>
+
+          <ion-row *ngIf="offer?.workers_count>1">
+            <ion-col >
+              <span class="inlabel">{{ 'WORKERS_COUNT' | translate}}</span> {{offer?.workers_count}}
+            </ion-col>
+          </ion-row>
+    </ion-card-content>
+  </ion-card>
+
+  <div class="card-spacer"></div>
+
+
+  <ion-card class="full">
+
+    <ion-card-content>
+    <ion-list >
+
+      <ion-item >
+        <ion-label floating>{{ 'JOB_DETAILS' | translate}}</ion-label>
+        <ion-textarea rows=3 name="job_details" 
+        [ngModel]="offer?.job_details"
+        (blur)="textChanged($event.target.value,'job_details');detailEdit=false;"
+        (focus)='detailEdit=true'>
+        </ion-textarea>
+      </ion-item>
+      <button ion-button outline *ngIf="detailEdit">
+        <ion-icon name="attach"></ion-icon> <span class="damargin"></span> {{ 'SAVE' | translate}}
+      </button>
+
+      <ion-item >
+        <ion-label class="inlabel"> {{ 'OFFER_STATE' | translate}} 
+
+          <span >( 
+            <span *ngIf="offer?.paused">{{ 'PAUSED' | translate }}</span>
+            <span *ngIf="! offer?.paused">{{ 'UN_PAUSED' | translate }}</span>  
+          )</span>
+
+        </ion-label>
+        
+        <ion-toggle [(ngModel)]="works" (ngModelChange)="toggleChange()" ></ion-toggle>
+      </ion-item>
+    </ion-list>
+    </ion-card-content>
+
+  </ion-card>
+
+  <div class="card-spacer"></div>
+
+  <ion-card class="full">
+
+    <ion-card-header color="primary">
+        {{ 'SHOW_AFTER_ACCEPT' | translate }}
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-item >
+        <ion-label floating>{{ 'TASK_REQS' | translate}}</ion-label>
+        <ion-textarea rows=3  
+        [ngModel]="offer?.req_after"
+        (blur)="textChanged($event.target.value,'req_after');reqEdit=false;"
+        (focus)='reqEdit=true'>
+        </ion-textarea>
+      </ion-item>
+
+      <button ion-button outline *ngIf="reqEdit">
+        <ion-icon name="attach"></ion-icon> <span class="damargin"></span> {{ 'SAVE' | translate}}
+      </button>
+
+      <ion-item>
+          <ion-label floating>{{ 'OFFER_PLACE' | translate}}</ion-label>
+          <ion-input type="text" name="loct_text" 
+          [ngModel]="offer?.loct_text"
+          (blur)="textChanged($event.target.value,'loct_text');loctEdit=false;"
+          (focus)='loctEdit=true'></ion-input>
+      </ion-item>
+
+          <button ion-button outline *ngIf="loctEdit">
+            <ion-icon name="attach"></ion-icon> <span class="damargin"></span> {{ 'SAVE' | translate}}
+          </button>
+
+    <ion-item>
+      <ion-row>
+          <sebm-google-map
+          [latitude]="currLoct?.lat"
+          [longitude]="currLoct?.lng"
+          (mapClick)="onSetMarker($event)"
+          [zoom]="16">
+            <sebm-google-map-marker
+              [latitude]="marker.lat"
+              [longitude]="marker.lng"
+              *ngIf="marker"></sebm-google-map-marker>
+        </sebm-google-map>
+      </ion-row>
+    </ion-item>
+
+
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

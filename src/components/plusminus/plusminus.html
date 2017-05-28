@@ -1,0 +1,15 @@
+<ion-grid >
+  <ion-row>
+
+    <ion-col col-8 >
+        <ion-input [ngClass]="{'border':isBorder}" type="number" [value]="input" [(ngModel)]="input"></ion-input>
+    </ion-col>
+
+    <ion-col col-4>
+      <button type="button" ion-button small  icon-only (click)="plus()"><ion-icon name="add"></ion-icon></button>
+      <button type="button" ion-button small [disabled]="minDisabled" icon-only (click)="minus()"><ion-icon name="remove"></ion-icon></button>
+    </ion-col>
+
+  </ion-row>
+</ion-grid>
+    

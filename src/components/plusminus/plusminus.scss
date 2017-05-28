@@ -1,0 +1,19 @@
+plusminus {
+    ion-input{
+        font-weight: bold;
+        font-size: 1.2em;
+        justify-content: center;
+        text-align: center;
+        &.border{
+            border-bottom: 1.5px solid #ccc;
+        }
+    }
+
+    .red{
+        background-color: red;
+    }
+
+    .button[icon-only] {
+        margin: 2px;
+    }
+}
