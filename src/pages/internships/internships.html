@@ -13,4 +13,19 @@
 
 <ion-content padding>
 
+  <ion-card *ngFor="let internship of internships | async">
+    <ion-card-header>
+      {{internship.title}}
+    </ion-card-header>
+    <ion-card-content>
+      
+    </ion-card-content>
+  </ion-card>
+
+<br/><br/><br/><br/><br/>
+ <ion-fab right bottom *ngIf="userInfo?.user_mode=='admin'">
+   <button ion-fab icon-only navPush="InternshipData" color="third">
+     <ion-icon name="add"></ion-icon>
+   </button>
+ </ion-fab>
 </ion-content>

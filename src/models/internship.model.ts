@@ -5,7 +5,8 @@ export class InternshipModel {
     title: string;
     status: string;
     date_created: any;
-    notes: string;
+    details: string;
+    image: string;
 
     constructor(){};
 
@@ -18,7 +19,8 @@ export class InternshipModel {
         title,
         status,
         date_created,
-        notes
+        details,
+        image
     }):InternshipModel {
         let internship= new InternshipModel();
 
@@ -27,8 +29,9 @@ export class InternshipModel {
             
         internship.title= title;
         internship.status = status || null;
-        internship.notes= notes || null;
+        internship.details= details || null;
         internship.date_created = date_created || [] ;
+        internship.image = image || null;
         return internship;
     }
 }

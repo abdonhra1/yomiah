@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { InternshipsService } from "../../services/internships.service";
+import { UserInfoService } from "../../services/user-info.service";
+import { UserInfoModel } from "../../models/user-info.model";
+import { FirebaseListObservable } from "angularfire2/database";
+import { InternshipModel } from "../../models/internship.model";
 
 /**
  * Generated class for the Internships page.
@@ -15,12 +19,20 @@ import { InternshipsService } from "../../services/internships.service";
 })
 export class Internships {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+  userInfo: UserInfoModel;
+  internships:FirebaseListObservable<InternshipModel[]>;
+  
+  constructor(public navCtrl: NavController,
+  public navParams: NavParams,
+  private userInfoServ: UserInfoService,
   private internServ: InternshipsService) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad Internships');
+  ngOnInit(){
+    this.userInfoServ.getUser().then((userInfo:UserInfoModel)=>{
+        this.userInfo=userInfo ;
+        this.internServ.getAllInternships().then(data=>this.internships=data);
+    });
   }
 
 }

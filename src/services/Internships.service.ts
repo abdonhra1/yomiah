@@ -8,14 +8,9 @@ import { InternshipModel } from "../models/internship.model";
 export class InternshipsService {
 
     offerApplicants: FirebaseListObservable<any>;
-
-
     readonly DB_REF='/internships';
 
-
-    constructor(private db: AngularFireDatabase) {
-
-    }
+    constructor(private db: AngularFireDatabase) {}
 
     saveInternship(internship: InternshipModel): Promise<string>{
 
@@ -32,5 +27,10 @@ export class InternshipsService {
         });
     }
 
+    getAllInternships():Promise<FirebaseListObservable<InternshipModel[]>>{
+        return new Promise((resolve,reject) => {
+            resolve( this.db.list(this.DB_REF).map( arr=> InternshipModel.fromJsonList(arr)) );
+        });
+    }
 
 }

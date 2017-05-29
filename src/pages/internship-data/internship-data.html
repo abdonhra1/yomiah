@@ -1,0 +1,61 @@
+<ion-header>
+
+  <ion-navbar  hideBackButton="true">
+    
+    <ion-buttons>
+      <button ion-button icon-only (click)="goBack()">
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title>Internship Data</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+
+  <ion-list >
+
+    <ion-item >
+      <ion-label floating>{{ 'INTERNSHIP_TITLE' | translate}}</ion-label>
+
+      <ion-input type="text" name="internship_title" 
+      [(ngModel)]="internship.title"
+      required></ion-input>
+    </ion-item>
+
+    <ion-item >
+
+      <ion-label floating>{{ 'INTERNSHIP_DETAILS' | translate}}</ion-label>
+
+      <ion-textarea rows=3  
+      [(ngModel)]="internship.details"
+      name="internship_details" 
+      required></ion-textarea>
+
+    </ion-item>
+
+    <ion-item >
+
+      <ion-label floating>{{ 'INTERNSHIP_IMAGE' | translate}}</ion-label>
+
+      <ion-input type="text" name="internship_image" 
+      [(ngModel)]="internship.image" ></ion-input>
+
+    </ion-item>
+
+  </ion-list>
+
+  <button 
+  ion-button type="submit" 
+  block color="third"
+  [disabled]="!f.valid "> 
+    {{ !editMode ? '':'SAVE' | translate }} {{ editMode ? '':'ADD' | translate }} {{ 'INTERNSHIP' | translate}}
+  </button>
+
+</form>
+
+</ion-content>
